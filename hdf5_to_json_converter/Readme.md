@@ -1,4 +1,4 @@
-##  hdf5reader_to_json.py, for converting hdf5 to json file, a code by Shivaji Chaulagain
+##  hdf5reader_to_json.py, for converting GRAND (only) hdf5 file  to json file, a code by Shivaji Chaulagain
 ### HDF5 file should be intially converted to json file to view 3D
 ### To use:
 From this directory, Open command prompt or terminal:
