@@ -1,5 +1,5 @@
-### HDF5 file should be intially converted to json file to view 3D
 ##  hdf5reader_to_json.py is written by Shivaji Chaulagain
+### HDF5 file should be intially converted to json file to view 3D
 ### To use:
 From this directory, Open command prompt or terminal:
 
