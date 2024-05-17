@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Animation with Hit Points</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <!-- <script src="/home/shivaji/Grand_3D_plotlyInteractive/plotly.js-master/dist/plotly.min.js"></script> -->
+  <script src="event_3d.js"></script>
+  <script src="./src/antenna_geometry.js"></script> 
+  <script src="./src/colorpalettee.js"></script>
+  <style>
+    .plotcontainer {
+      position: absolute;
+      top: 0;
+      right: 21%;
+      bottom:10;
+      left:10;
+      height: 10%;
+    }
+    #GRAND_logo {
+      position: absolute;
+      top: 20px;  /* Adjust the top position as needed */
+      right: 100px;  /* Adjust the right position as needed */
+      z-index: 100
+    }
+    #GRAND_logo img {
+      width: 80px;  /* Set the width of the logo */
+      height: auto;  /* Maintain aspect ratio */
+      /* border-radius: 50%; */
+    }
+    #table{
+      position: absolute;
+      width: 340px;
+      height: 500px;
+      top: 0px;
+      right: 0;
+      z-index: 0;
+      
+    }
+  </style>
+</head>
+<body>
+  <!-- <input type="file" id=" 'geometryfile"> -->
+  <input type="file" id="fileinput" accept=".json">
+  <button id="showHitPointsButton">Show Hit Points</button>
+  <div id="GRAND_logo">
+    <img src="https://grand.cnrs.fr/wp-content/uploads/2023/01/GRAND_logo.png">
+  </div>
+  <div id="plot"></div>
+  <div class="plotcontainer">
+    <div id="Eplot"></div>
+    <button id="playbutton" type="button" onclick="" title="Click here to see Efield changing with time" style="position: absolute; top:300px; right:250px; z-index: 1; width: 38px; height:20px; border: none; font-family: Open Sans Light, sans-serif; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);">Play</button>
+    <div id="h_eplot"></div>
+  </div>
+  <div id="table"></div>
+  
+
+</body>
+</html> 
+
+
+
+
+
+
+ 
