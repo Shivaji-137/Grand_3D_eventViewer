@@ -3,7 +3,7 @@
 //                                        SHIVAJI CHAULAGAIN
 //----------------------------------------------------------------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', function() {
-    const geodata = antenna_geometry();     // importing from jsonreader.js using <script src="jsonreader.js"><script> in html
+    const geodata = antenna_geometry();     // importing from src/antenna_geometry.js using <script src="./src/antenna_geometry.js"><script> in html
     //console.log(geodata);
     document.getElementById('fileinput').addEventListener('change', function(event) {
         const file = event.target.files[0];
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     Plotly.newPlot(plotElement,[traced], layout);
 
-    // create a initial layout for Electrifield and hilbert Electric field traces
+    // create a initial layout for Electrifield and hilbert Electric field traces plot
     function range(n){
         return Array.from({length:n+1}, (_,i) => i);
     };
@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
         height: 300,
         showgrid: true
     };
-    // create an initial plot for table
+    // create an initial plot for table with empty but zero datas
     const val = [[
         "Particle",
         "Ene [EeV]",
@@ -163,30 +163,30 @@ document.addEventListener('DOMContentLoaded', function() {
     Plotly.newPlot("Eplot", [{x:[0], y:[0], mode: 'markers'}], Elayout);
     Plotly.newPlot("h_eplot", [{x:[0], y:[0], mode: 'markers'}], hlayout);
 
-    // create an event handler that plot Electric field and hilber Electric field traces in another plot
+    // create an event handler that when click on hit points plot Electric field and hilber Electric field traces in corresponding plot
     const clickevent = (efield, h_efield) => {
         plotElement.on('plotly_click', function(eventData){
             const electricField = efield;
             const Hilbert_Efield = h_efield;
             const Akey = Object.keys(electricField);
-            console.log(Akey)
+            //console.log(Akey) // for checking in browser console
             if (eventData.points.length > 0){
                 Akey.forEach(key => {
                     if ("A"+ eventData.points[0].pointNumber === key ){
-                        plot_electricField(electricField, Hilbert_Efield, key);
+                        plot_electricField(electricField, Hilbert_Efield, key); // pass parameter for plotting Electric field traces
                     }
                 });
             }
         });
     };
     // plot an electric field traces
-    const plot_electricField = (electricField,Hilberfield,e) => {  // e1 as key
+    const plot_electricField = (electricField,Hilberfield,e) => {  // e as key
         const Ex = electricField[e]["Ex"];
         const Ey = electricField[e]["Ey"];
         const Ez = electricField[e]["Ez"];
         const Eminx = Math.min(...Ex);
-        console.log(e)
-        console.log(Eminx);
+        //console.log(e) // for checking in browser console
+        //console.log(Eminx); // for checking in browser console
         const Eminy = Math.min(...Ey);
         const Eminz = Math.min(...Ez);
         const Emin = Math.min(...[Eminx, Eminy, Eminz])- 0.05*Math.abs(Math.min(...[Eminx, Eminy, Eminz]));
@@ -242,9 +242,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 y:0.95,
                 xanchor: 'left',  // Anchor legend to the right side of the plot
                 yanchor: 'middle',
-
             },
-
             xaxis:{
                 title: "Time",
                 range: [0,3500],
@@ -261,7 +259,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 showline: true,
                 showticklabels: true,
                 ticks: "outside"
-
             },
             width: 530,
             height: 300,
@@ -305,7 +302,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 y:0.95,
                 xanchor: 'left',  // Anchor legend to the right side of the plot
                 yanchor: 'middle',
-
             },
             xaxis:{
                 title: "Time",
@@ -323,7 +319,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 showline: true,
                 showticklabels: true,
                 ticks: "outside"
-
             },
             width: 530,
             height: 300,
@@ -332,7 +327,7 @@ document.addEventListener('DOMContentLoaded', function() {
         Plotly.newPlot("h_eplot", Hdata, hlayouts, {scrollZoom: true});
         Plotly.newPlot("Eplot", Edata, Elayouts, {scrollZoom: true});
         
-        // create a button for transition effect of electric field varying with time
+        // create a "Play" button for transition effect of electric field varying with time
         const button = document.getElementById("playbutton");
         button.addEventListener("click", function() {
             transition_E(Ex, Ey, Ez, Emin, Emax,e);
@@ -342,7 +337,7 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     function transition_E(Ex, Ey, Ez, Emin, Emax,e){
         const frames = [];
-        let nbr = 1500; // Please set frame length as your choice. I have set default 1500 here nbr=t.length=3500
+        let nbr = 2500; // Please set frame length as your choice. I have set default 2500 here. nbr=t.length=3500
         for (var i = 0; i < nbr; i++) {
             frames[i] = {data: [{x: [], y: []}, {x: [], y: []},{x: [], y: []}]}
             frames[i].data[0].x = t.slice(0, i+1);
@@ -359,7 +354,6 @@ document.addEventListener('DOMContentLoaded', function() {
             x: frames[5].data[0].x,
             y: frames[5].data[0].y,
         };
-        
         var trace2 = {
             type: "scatter",
             mode: "lines",
@@ -367,7 +361,6 @@ document.addEventListener('DOMContentLoaded', function() {
             x: frames[5].data[1].x,
             y: frames[5].data[1].y,
         };
-        
         var trace3 = {
             type: "scatter",
             mode: "lines",
@@ -375,7 +368,6 @@ document.addEventListener('DOMContentLoaded', function() {
             x: frames[5].data[2].x,
             y: frames[5].data[2].y,
         }
-        
         var data = [trace1,trace2, trace3];
         var layout = {
             title: "<b>E-field traces ("+e+")</b>",
@@ -385,7 +377,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 y:0.95,
                 xanchor: 'left',  // Anchor legend to the right side of the plot
                 yanchor: 'middle',
-
             },
             xaxis:{
                 title: "Time",
@@ -403,11 +394,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 showline: true,
                 showticklabels: true,
                 ticks: "outside"
-
             },
-            
         };
-        
         Plotly.newPlot('Eplot', data, layout).then(function() {
             Plotly.animate('Eplot', frames,{
                 fromcurrent: true,
@@ -420,7 +408,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
-
     };
     // for hilbert
     function transition_h(hx, hy, hz, hmin, hmax){
@@ -504,7 +491,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
     };
-
     // let's define a function that display event summary
     const event_information = (quantities, values) =>{
         const val = [quantities,values];
@@ -537,8 +523,7 @@ document.addEventListener('DOMContentLoaded', function() {
          Plotly.newPlot('table', data, {width:340, height:500});
     };
 
-      
-
+    // this function process with json file input from browsers
     const geometry_plot_section = (jsonData) => {
         const key1 = Object.keys(jsonData["hitgeo"]["hitXYZ"])
         const hitxValues = key1.map(k => jsonData["hitgeo"]["hitXYZ"][k]["X"]);
@@ -563,25 +548,25 @@ document.addEventListener('DOMContentLoaded', function() {
             hitt: ' ',
             opacity: 1
         }));
-        let previoussize = [];
-        let previousindex = [];
+        let previoussize = []; //not necessary but wrote here
+        let previousindex = []; //not necessary but wrote here
         const colors = color_pick();   // return colors from color_palette.js
         function prepareFrameData(progress, idx,n) {
-            let previouslyHitIndex = -1;
-            let previouslyHitSize = 0;
+            let previouslyHitIndex = -1; //not necessary but wrote here
+            let previouslyHitSize = 0;  //not necessary but wrote here
             const geot =  geodataPoint.map((element, index) => {
               const modifiedElement = { ...element, isPreviousHit: false }; // Reset flag
               modifiedElement.color = 
-                    index === idx && element.isHit ? colors[index] : // Current hit point
-                    (element.isHit && index !== idx) ? colors[index]: // Previously marked hit point (original index)
+                    index === idx && element.isHit ? colors[index] : // check whether the hit point click is current
+                    (element.isHit && index !== idx) ? colors[index]: // check previous hit point which is set true to ishit)
                     (index === previouslyHitIndex) ? previouslyHitSize : element.color;
               
-              modifiedElement.isPreviousHit = element.isHit; // Update flag on hit
+              modifiedElement.isPreviousHit = element.isHit; // Update flag on hit //not necessary but wrote here
               // Update size based on conditions
               modifiedElement.size =
                 index === idx && element.isHit ? Math.log(wt[index])*4 : // Current hit point
-                (element.isHit && index !== idx) ? Math.log(wt[index])*4: // Previously marked hit point (original index)
-                (index === previouslyHitIndex) ? previouslyHitSize : element.size; // Update size at previous hit point index
+                (element.isHit && index !== idx) ? Math.log(wt[index])*4: 
+                (index === previouslyHitIndex) ? previouslyHitSize : element.size; 
               
               modifiedElement.weight = 
                     index === idx && element.isHit ? wt[index] : // Current hit weight
@@ -596,16 +581,16 @@ document.addEventListener('DOMContentLoaded', function() {
             //         index === idx && element.isHit ? 1 : // Current hit opacity
             //         (element.isHit && index !== idx) ? 1: // Previously marked hit opacity (original index)
             //         (index === previouslyHitIndex) ? previouslyHitSize : element.opacity; //default opacity for rest of the points
+            // above comment was used for testing purposes
               return modifiedElement;
             });
             // // Update previously hit point info after processing data points (optional)
-            previousindex.push(idx);
+            previousindex.push(idx); //not necessary but wrote here
             return geot;
         };
           // i am pushing a frame data here and filter it out according to the size
         function createPlot(showHitPoints = false, idx,n) {
             const updatedData = prepareFrameData(showHitPoints ? 1 : 0, idx,n);
-            //const weights = updatedData.map(point => point.weight)
             const trace = {
                 x: updatedData.map(point => point.x),
                 y: updatedData.map(point => point.y),
@@ -621,26 +606,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 customdata: updatedData.map(point => point.weight),
                 type: 'scatter3d'
             };
-
             Plotly.newPlot(plotElement,[trace], layout);
 
             // display event summary
             event_information(quantities, values);
            
-           // place here an click event for point click on plot
+           // Pass a function parameter on an click event for point click on plot
             clickevent(electric_field, hilbert_field);
         };
         const showHitPointsButton = document.getElementById('showHitPointsButton');
         showHitPointsButton.addEventListener('click', () => {
             let updateCount = 0;
             let idx = 0;
-            // this will update each hit point every 500 millisecond
+            // this setInterval() will update each hit point every 500 millisecond
             const intervalId = setInterval(() => {
                 if (updateCount >= hitxValues.length) { 
                     clearInterval(intervalId);
                     return;
                 }
-                const indx = hitxValues[updateCount];    // it is getting the element of hitIndices like hitX
+                const indx = hitxValues[updateCount];    
                 const indy = hityValues[updateCount];
                 const indz = hitzValues[updateCount];
                 for (let i=0; i<xValues.length; i++){
