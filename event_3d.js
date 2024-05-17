@@ -1,4 +1,4 @@
-// Sample Project Written for GRAND EVENT NEUTRINO COLLABORATION, by:
+// Sample Project code Written for GRAND EVENT NEUTRINO COLLABORATION, by:
 //     
 //                                        SHIVAJI CHAULAGAIN
 //----------------------------------------------------------------------------------------------------------------------------
