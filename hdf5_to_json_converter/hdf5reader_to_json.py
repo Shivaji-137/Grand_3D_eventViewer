@@ -1,3 +1,11 @@
+"""
+Written by: 
+.............................SHIVAJI CHAULAGAIN..................................................
+
+This python file converts GRAND stored HDF5 data file to json file.
+*Defined function under class event_3D_viewer: get_geometry(), get_data(), get_trace(), plot_text() are copied from 
+   https://github.com/rameshkoirala/EventViewer/blob/master/event_viewer.py
+"""
 class event_3D_viewer:
     def __init__(self, hdffile, geofile):
         self.hdffile = open(hdffile, 'rb')
