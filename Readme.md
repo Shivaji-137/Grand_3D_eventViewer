@@ -3,4 +3,5 @@
 ### * Note: If running locally, all this file should be in one folder to work.
 ### Antenna geometry and color palette are stored in js file inside src directory
 
+## You can still run html in browser. I have already converted sample hdf5 file and use the json file stored in Data folder
 This is the sample with all javascript code already written but css is still to be done for better looks if great look is needed otherwise this project really works. Also, there is some error in order of update of hit point. It will be solved shortly.
