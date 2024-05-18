@@ -637,15 +637,15 @@ document.addEventListener('DOMContentLoaded', function() {
             return hitT[numKey];
         });
         
-            // Create an array of key-value pairs
+            // array of key-value pairs
         const keyValuePairs = key1.map((key, index) => {
             return { key: key, time: timeValues[index] };
         });
         
-            // Sort the key-value pairs based on time values
+            // Sorting key-value pairs based on time values
         keyValuePairs.sort((a, b) => a.time - b.time);
     
-        // Use the sorted keys to sort hitxValues, hityValues, and hitzValues
+        // sorting keys to sort hitxValues, hityValues, and hitzValues
         const sortedHitXValues = keyValuePairs.map(pair => jsonData["hitgeo"]["hitXYZ"][pair.key].X);
         const sortedHitYValues = keyValuePairs.map(pair => jsonData["hitgeo"]["hitXYZ"][pair.key].Y);
         const sortedHitZValues = keyValuePairs.map(pair => jsonData["hitgeo"]["hitXYZ"][pair.key].Z);
@@ -661,7 +661,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     return;
                 }
                 
-                const indx = sortedHitXValues[updateCount];    // it is getting the element of hitIndices like hitX
+                const indx = sortedHitXValues[updateCount];    // using sorted hit points values here
                 const indy = sortedHitYValues[updateCount];
                 const indz = sortedHitZValues[updateCount];
                 for (let i=0; i<xValues.length; i++){
