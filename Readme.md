@@ -38,10 +38,9 @@ Event_3D_viewer.html: The main HTML file that opens the visualization in your br
 
 The project currently focuses on functionality over aesthetics. You can improve the visual appeal by adding CSS styles to the Event_3D_viewer.html file.
 
-## Known Issues
+## Knownn Issues Solved
 
-The order of updating hit points might require correction for optimal visualization.
-
+The issues was the order of the hitpoints. It is solved now by using sorted hitx, hity and hitz values by hit time
 ## Contact
 
 Feel free to reach out to the project author for any questions or contributions.
