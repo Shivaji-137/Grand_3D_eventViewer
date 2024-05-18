@@ -3,7 +3,7 @@
 //                                        SHIVAJI CHAULAGAIN
 //----------------------------------------------------------------------------------------------------------------------------
 document.addEventListener('DOMContentLoaded', function() {
-    const geodata = antenna_geometry();     // importing from jsonreader.js using <script src="jsonreader.js"><script> in html
+    const geodata = antenna_geometry();     // importing from antenna_geometry.js using <script src="./src/antenna_geometry.js"><script> in html
     //console.log(geodata);
     document.getElementById('fileinput').addEventListener('change', function(event) {
         const file = event.target.files[0];
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
             geometry_plot_section(jsonData); // calling function that provide hitx, hity, hitz, wt, tbins data and process it
         };
         reader.readAsText(file);
-        // Reset file input after processing
+        
     });
     const key = Object.keys(geodata[0]);
     const xValues = key.map(k => geodata[0][k]['X']);
@@ -303,7 +303,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 orientation: 'h',
                 x:0.5,
                 y:0.95,
-                xanchor: 'left',  // Anchor legend to the right side of the plot
+                xanchor: 'left',  
                 yanchor: 'middle',
 
             },
@@ -383,7 +383,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 orientation: 'h',
                 x:0.5,
                 y:0.95,
-                xanchor: 'left',  // Anchor legend to the right side of the plot
+                xanchor: 'left',  
                 yanchor: 'middle',
 
             },
@@ -467,7 +467,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     orientation: 'h',
                     x:0.5,
                     y:0.95,
-                    xanchor: 'left',  // Anchor legend to the right side of the plot
+                    xanchor: 'left', 
                     yanchor: 'middle',
     
                 },
