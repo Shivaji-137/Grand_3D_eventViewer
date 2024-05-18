@@ -1,4 +1,4 @@
-# Project: 3D Interactive EventViewer for Giant Radio Array for Neutrino Detection
+# Project: 3D Interactive EventViewer for Giant Radio Array for Neutrino Detection, using javascript only
 
 ## Author
 
