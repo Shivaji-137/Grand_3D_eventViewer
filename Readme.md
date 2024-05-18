@@ -12,7 +12,7 @@ This project visualizes data from the Giant Radio Array for Neutrino Detection (
 
 ### Prerequisites
 
-A web browser that supports WebGL (most modern browsers do).
+A web browser that supports WebGL (most modern browsers do). Require internet connection
 ### Running the Project
 
 Clone or download the project repository.
