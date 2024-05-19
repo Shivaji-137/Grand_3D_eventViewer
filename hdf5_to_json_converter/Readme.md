@@ -10,4 +10,6 @@ From this directory, Open command prompt or terminal:
 
     *Note: While converting to json file, Data folder/directory should have only one .dat and hdf5 file: antenna geometry .dat files and required hdf5 file. if antenna geometry is stored in .csv, please change the file extension condition in hdf5reader_to_json.py python file accordingly. After changing to .csv extension condition, everything works
 
+* To use hdf5reader_to_json.py, hdf5fileinout.py and mix.py should be inside same directory.
 * hdf5fileinout.py, mix.py and .dat, hdf5 file are used from https://github.com/rameshkoirala/EventViewer
+  
